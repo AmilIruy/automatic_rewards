@@ -64,22 +64,12 @@ janela.config(background="#111111")
 
 myappid = 'program.for.locke'
 ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
-janela.iconbitmap("imagens\iv8ico.ico") 
+janela.iconbitmap("imagens\iv11.1ico.ico") 
 
-im1 = PhotoImage(file="imagens\iv8.2.png")  
-im1 = im1.subsample(9,9)  
-figura1 = Label(image=im1,bg="#111111")
-figura1.grid(row=0, column=0, padx=(150, 5), pady=(380, 10), sticky="")
-
-im2 = PhotoImage(file="imagens\Art_Print__Front_View_of_Human_Skeleton_in_Fighting_Stance_by_Stocktrek_Images___24x24in-removebg-preview.png")
-im2 = im2.subsample(5,5)
-figura2 = Label(janela, image=im2,bg="#111111")
-figura2.grid(row=0, column=0, padx=(300, 0), pady=(280, 10), sticky="ne")
-
-im3 = PhotoImage(file="imagens\direita esqueleto.png") 
-im3 = im3.subsample(5,5)
-figura3 = Label(janela, image=im3,bg="#111111")
-figura3.grid(row=0, column=0, padx=(153, 150), pady=(120, 10), sticky="w")
+im1 = PhotoImage(file="imagens\iv11.2.png")  
+im1 = im1.subsample(5,5)  
+figura1 = Label(image=im1,bg="#111112")
+figura1.grid(row=0, column=0, padx=(130, 5), pady=(380, 10), sticky="")
 
 
 Label(janela, text="Começo:").place(x=130, y=50)
