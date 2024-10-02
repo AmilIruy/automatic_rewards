@@ -82,10 +82,10 @@ def janela_manual():
     janela2 = tk.Toplevel()
     janela2.geometry("570x530")
     janela2.config(background=scolor)
-    janela2.iconbitmap("A.R\Logo\iv13.5ico.ico")
+    janela2.iconbitmap("A.R Imagens\Logo\iv13.5ico.ico") 
     janela2.resizable(False, False)
     global imagem_janela2
-    imagem_janela2 = PhotoImage(file="A.R\Manual\MANUAL_manual.png")
+    imagem_janela2 = PhotoImage(file="A.R Imagens\Manual\MANUAL_manual.png")
     label_imagem = Label(janela2, image=imagem_janela2, bg=scolor)
     label_imagem.pack(pady=20)
     botao2 = customtkinter.CTkButton(janela2, text= "MouseInfo",fg_color="yellow", border_color="#381328", hover_color="green", text_color= "black", cursor="hand2", bg_color=scolor, corner_radius= 100, width=10, height=15, command= abrir_mouseinfo)
@@ -108,26 +108,26 @@ janela.config(background=pcolor)
 
 myappid = "program.for.locke/AmilIruy"
 ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
-janela.iconbitmap("A.R\Logo\iv13.5ico.ico")      
- 
+janela.iconbitmap("A.R Imagens\Logo\iv13.5ico.ico")      
+  
  
 canvas = Canvas(janela, bd=0, highlightthickness=0, width=700, height=600)
 canvas.pack()
 
-imagem = PhotoImage(file="A.R\Logo\Barra.png")  
+imagem = PhotoImage(file="A.R Imagens\Logo\Barra.png")  
 im1 = canvas.create_image(0, -5, anchor=NW, image=imagem)
 
-imagem2 = PhotoImage(file="A.R\Buttons\MANUAL.png") 
+imagem2 = PhotoImage(file="A.R Imagens\Buttons\MANUAL.png") 
 im2 = canvas.create_image(65, 80, anchor=NW, image=imagem2)
 botao2 = Button(janela, image=imagem2, command=janela_manual, bd=0, bg= "#160810", fg= "#160810", activebackground="#160810") 
 botao2.place(x=65, y=80) 
 
-imagem4 = PhotoImage(file="A.R\Buttons\CONTATO.png") 
+imagem4 = PhotoImage(file="A.R Imagens\Buttons\CONTATO.png") 
 im4 = canvas.create_image(65, 200, anchor=NW, image=imagem4)
 botao4 = Button(janela, image=imagem4, command=contato, bd=0, bg= "#160810", fg= "#160810", activebackground="#160810") 
 botao4.place(x=65, y=200) 
 
-imagem3 = PhotoImage(file="A.R\Logo\iiiv16 1.png")  
+imagem3 = PhotoImage(file="A.R Imagens\Logo\iiiv16 1.png")  
 im3 = canvas.create_image(65, 380, anchor=NW, image=imagem3)
 
 
