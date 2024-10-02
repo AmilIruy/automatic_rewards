@@ -2,15 +2,15 @@ import pyautogui
 from time import sleep
 from tkinter import *
 import tkinter as tk
+import customtkinter as ctk
+import customtkinter
 import ctypes
 import pickle
-import os
+import webbrowser
 
 
-def arquivo_texto():
-    os.system("Leia.txt")
-
-def iniciar_automacao():
+def iniciar_automacao(): 
+    janela.iconify()
     n1 = int(tex_1.get())
     n2 = int(tex_2.get())
 
@@ -39,6 +39,8 @@ def iniciar_automacao():
 
 def salvar_dados():
     dados = {
+        "n1": tex_1.get(),
+        "n2": tex_2.get(),
         "x1": x_1.get(),
         "y1": y_1.get(),
         "x2": x_2.get(),
@@ -56,6 +58,8 @@ def carregar_dados():
     try:
         with open("dados_salvos.pkl", "rb") as arquivo:
             dados = pickle.load(arquivo)
+            tex_1.insert(0, dados.get("n1", ""))
+            tex_2.insert(0, dados.get("n2", ""))
             x_1.insert(0, dados.get("x1", ""))  
             y_1.insert(0, dados.get("y1", ""))
             x_2.insert(0, dados.get("x2", ""))
@@ -74,66 +78,92 @@ def abrir_mouseinfo():
 def verificarnumero(char):
     return char.isdigit()
 
-janela = Tk()
-janela.title("LOCKE")
-janela.geometry("700x600")
+def janela_manual():
+    janela2 = tk.Toplevel()
+    janela2.geometry("570x530")
+    janela2.config(background=scolor)
+    janela2.iconbitmap("A.R\Logo\iv13.5ico.ico")
+    janela2.resizable(False, False)
+    global imagem_janela2
+    imagem_janela2 = PhotoImage(file="A.R\Manual\MANUAL_manual.png")
+    label_imagem = Label(janela2, image=imagem_janela2, bg=scolor)
+    label_imagem.pack(pady=20)
+    botao2 = customtkinter.CTkButton(janela2, text= "MouseInfo",fg_color="yellow", border_color="#381328", hover_color="green", text_color= "black", cursor="hand2", bg_color=scolor, corner_radius= 100, width=10, height=15, command= abrir_mouseinfo)
+    botao2.place(x=218, y=101)  
+    janela2.mainloop()
+
+def contato():
+    webbrowser.open("https://github.com/AmilIruy")
+
+
+pcolor= "#f5eff3" 
+scolor= "#160810"
+
+
+janela = ctk.CTk()
+janela.title("A.R")
+janela.geometry("550x480")
 janela.resizable(False, False)
-janela.config(background="#f5eff3") 
+janela.config(background=pcolor) 
 
-barra_lateral = tk.Frame(janela, bg="#381328")
-barra_lateral.place(x=0, y=0, width=291, height=600)
-
-barra=Menu(janela)
-menuMenu=Menu(barra, tearoff=0, fg="#381328")
-menuMenu.add_command(label="Leia", command=arquivo_texto)
-menuMenu.add_command(label="MouseInfo", command=abrir_mouseinfo)
-barra.add_cascade(label="Menu", menu=menuMenu)
-
-janela.config(menu=barra)
-
-myappid = "program.for.locke"
+myappid = "program.for.locke/AmilIruy"
 ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
-janela.iconbitmap("imagens\iv13.5ico.ico")  
+janela.iconbitmap("A.R\Logo\iv13.5ico.ico")      
+ 
+ 
+canvas = Canvas(janela, bd=0, highlightthickness=0, width=700, height=600)
+canvas.pack()
 
-im1 = PhotoImage(file="imagens\label1.png")   
-im1 = im1.subsample(1,1)   
-figura1 = Label(image=im1, bg="#f5eff3") 
-figura1.place(x=-5, y=-5)
+imagem = PhotoImage(file="A.R\Logo\Barra.png")  
+im1 = canvas.create_image(0, -5, anchor=NW, image=imagem)
+
+imagem2 = PhotoImage(file="A.R\Buttons\MANUAL.png") 
+im2 = canvas.create_image(65, 80, anchor=NW, image=imagem2)
+botao2 = Button(janela, image=imagem2, command=janela_manual, bd=0, bg= "#160810", fg= "#160810", activebackground="#160810") 
+botao2.place(x=65, y=80) 
+
+imagem4 = PhotoImage(file="A.R\Buttons\CONTATO.png") 
+im4 = canvas.create_image(65, 200, anchor=NW, image=imagem4)
+botao4 = Button(janela, image=imagem4, command=contato, bd=0, bg= "#160810", fg= "#160810", activebackground="#160810") 
+botao4.place(x=65, y=200) 
+
+imagem3 = PhotoImage(file="A.R\Logo\iiiv16 1.png")  
+im3 = canvas.create_image(65, 380, anchor=NW, image=imagem3)
 
 
-Label(janela, text="Começo:", fg="#381328", bg="#f5eff3").place(x=350, y=50)
+Label(janela, text="Começo:", fg=scolor, bg=pcolor).place(x=350, y=50)
 tex_1 = Entry(janela, font=("arial", 14), bd=1, width=11, justify="left")
 tex_1.place(x=420, y=50)
 
-Label(janela, text="Final:", fg="#381328", bg="#f5eff3").place(x=375, y=100)
+Label(janela, text="Final:", fg=scolor, bg=pcolor).place(x=375, y=100)
 tex_2 = Entry(janela, font=("arial", 14), bd=1, width=11, justify="left")
 tex_2.place(x=420, y=100)
 
-Label(janela, text="X:", fg="#381328", bg="#f5eff3").place(x=400, y=181)
+Label(janela, text="X:", fg=scolor, bg=pcolor).place(x=400, y=181)
 x_1 = Entry(janela, font=("arial", 14), bd=1, width=5, justify="left")
 x_1.place(x=420, y=180)
 
-Label(janela, text=":Y", fg="#381328", bg="#f5eff3").place(x=572, y=181)
+Label(janela, text=":Y", fg=scolor, bg=pcolor).place(x=572, y=181)
 y_1 = Entry(janela, font=("arial", 14), bd=1, width=5, justify="left")
 y_1.place(x=500, y=180)
 
-Label(janela, text="X:", fg="#381328", bg="#f5eff3").place(x=400, y=221)
+Label(janela, text="X:", fg=scolor, bg=pcolor).place(x=400, y=221)
 x_2 = Entry(janela, font=("arial", 14), bd=1, width=5, justify="left")
 x_2.place(x=420, y=220)
 
-Label(janela, text=":Y", fg="#381328", bg="#f5eff3").place(x=572, y=221)
+Label(janela, text=":Y", fg=scolor, bg=pcolor).place(x=572, y=221)
 y_2 = Entry(janela, font=("arial", 14), bd=1, width=5, justify="left")
 y_2.place(x=500, y=220) 
 
-Label(janela, text="X:", fg="#381328", bg="#f5eff3").place(x=400, y=261)
+Label(janela, text="X:", fg=scolor, bg=pcolor).place(x=400, y=261)
 x_3 = Entry(janela, font=("arial", 14), bd=1, width=5, justify="left")
 x_3.place(x=420, y=260)
 
-Label(janela, text=":Y", fg="#381328", bg="#f5eff3").place(x=572, y=261)
+Label(janela, text=":Y", fg=scolor, bg=pcolor).place(x=572, y=261)
 y_3 = Entry(janela, font=("arial", 14), bd=1, width=5, justify="left")
 y_3.place(x=500, y=260)
 
-Label(janela, text="Duração", fg="#381328", bg="#f5eff3").place(x=596, y=150)
+Label(janela, text="Duração", fg=scolor, bg=pcolor).place(x=596, y=150)
 d_1 = Entry(janela, font=("arial", 14), bd=1, width=4, justify="left")
 d_1.place(x=600, y=181)
 
@@ -152,18 +182,10 @@ for campo in campos:
     campo.config(validate="key", validatecommand=(validarnumero, "%S"))
 
 
-botao1 = Button(janela, width=10, text="Iniciar", command=iniciar_automacao, bd=0, bg="#381328", fg="white")
-botao1.place(x=450, y=410)
+botao1 = customtkinter.CTkButton(janela, text= "iniciar",fg_color="#381328", border_color="#381328", hover_color=scolor, cursor="hand2", bg_color=pcolor, corner_radius= 50, command= iniciar_automacao)
+botao1.place(x=350, y=310)   
 
-#botao2 = Button(janela, width=5, text="Leia", command=arquivo_texto, bd=1)
-#botao2.place(x=10, y=550) 
-
-#botao3 = Button(janela, width=8, text="MouseInfo", command=abrir_mouseinfo, bd=1)
-#botao3.place(x=70, y=550)
-
-#111112
 
 carregar_dados()
 
 janela.mainloop()
-
