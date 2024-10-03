@@ -7,6 +7,11 @@ import customtkinter
 import ctypes
 import pickle
 import webbrowser
+import os
+
+
+user_dir = os.path.expanduser("~")
+dados_salvos_path = os.path.join(user_dir, "dados_salvos.pkl")
 
 
 def iniciar_automacao(): 
