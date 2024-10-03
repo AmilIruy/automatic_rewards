@@ -80,7 +80,6 @@ def verificarnumero(char):
 
 def janela_manual():
     janela2 = tk.Toplevel()
-    janela2.geometry("570x530")
     janela2.config(background=scolor)
     janela2.iconbitmap("A.R\Logo\iv13.5ico.ico")
     janela2.resizable(False, False)
@@ -89,7 +88,7 @@ def janela_manual():
     label_imagem = Label(janela2, image=imagem_janela2, bg=scolor)
     label_imagem.pack(pady=20)
     botao2 = customtkinter.CTkButton(janela2, text= "MouseInfo",fg_color="yellow", border_color="#381328", hover_color="green", text_color= "black", cursor="hand2", bg_color=scolor, corner_radius= 100, width=10, height=15, command= abrir_mouseinfo)
-    botao2.place(x=218, y=101)  
+    botao2.place(x=212, y=101)  
     janela2.mainloop()
 
 def contato():
@@ -102,7 +101,6 @@ scolor= "#160810"
 
 janela = ctk.CTk()
 janela.title("A.R")
-janela.geometry("550x480")
 janela.resizable(False, False)
 janela.config(background=pcolor) 
 
